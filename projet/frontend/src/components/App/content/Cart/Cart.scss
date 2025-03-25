@@ -1,0 +1,16 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    overflow: hidden;
+    position: sticky;
+    top: 1rem;
+    &-top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h2{
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+
+    volumes:
+      - ./frontend:/app/frontend
+
+    ports:
+      - "5173:5173"
+
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    depends_on:
+      - backend
+    command:
+      - npm run dev
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app/backend
+    environment:
+      - PGUSER=oclock
+      - PGPASSWORD=passw0rd
+      - PGPORT=5432
+      - PGHOST=database
+      - PGDATABASE=shop
+    depends_on:
+      - database
+    command:
+      - npm run dev
+
+  database:
+    image: postgis/postgis:13-master
+    container_name: database
+    volumes:
+      - ./backend/data/database:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: "oclock"
+      POSTGRES_PASSWORD: "passw0rd"
+      POSTGRES_DB: "shop"
+    restart: always #relance le service automatiquement si crash
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+    restart: always
