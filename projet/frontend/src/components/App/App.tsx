@@ -1,8 +1,8 @@
-import Header from './Header/Header';
+import Header from './header/header';
 
 import './App.scss';
-import Footer from './Footer/Footer';
-import Content from './Content/Content';
+import Footer from './footer/footer';
+import Content from './content/Content';
 
 
 function App() {
