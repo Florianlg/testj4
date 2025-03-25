@@ -21,15 +21,9 @@ function ProductsList() {
 
   return (
     <div className="product-list">
-      {Object.entries(sortedProducts).map(([category, items]) => (
-        <section key={category} className='product-category'>
-          <h2>{category}</h2>
-
-          {items.map((product) => 
-            <ProductItem key={product.id} product={product} />
-          )}
-        </section>
-      ))}
+      <div className="product-list">
+            <pre>{JSON.stringify(sortedProducts, null, 4)}</pre>
+        </div>
     </div>
   );
 }
