@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import logo from '../../../assets/LocalExpress_logo.svg';
-import './Header.scss';
+import './header.scss';
 
 
 function Header() {
