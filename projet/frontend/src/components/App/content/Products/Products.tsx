@@ -1,13 +1,13 @@
-import './Products.scss'
-import ProductsList from './ProductsList'
+import './Products.scss';
+import ProductsList from './ProductsList';
 
-function Products(){
-    return (
-        <section className='products'>
-            <h2>Produits</h2>
-            <ProductsList/>
-        </section>
-    )
+function Products() {
+
+  return (
+    <section className="products">
+      <ProductsList />
+    </section>
+  );
 }
 
-export default Products
+export default Products;

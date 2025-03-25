@@ -1,26 +1,37 @@
 import { useState, useEffect } from 'react';
-
 import fetchData from '../../../../api/fetchData';
+import { Product, ProductsData } from '../../../../@types/products';
+import groupByKey from '../../../../utils/groupBy';
+import ProductItem from './ProductItem';
 
-import { Product, ProductsData} from '../../../../@types/products';
 
-function ProductList() {
-    const [products, setProducts] = useState<Product[]>([]);
+function ProductsList() {
+  const [sortedProducts, setSortedProducts] = useState<Record<string, Product[]>>({});
 
-    useEffect( () => {
-        fetchData<ProductsData>('/products')
-        .then((data) => {
-            setProducts(data.products);
-        })
-        .catch((error) => {
-            console.error(error);
-        })
-    }, []);
-    return (
-        <div className="product-list">
-            <pre>{JSON.stringify(products, null, 4)}</pre>
-        </div>
-    )
+  useEffect(() => {
+    fetchData<ProductsData>('/products')
+      .then((data) => {
+        const productsByCategory = groupByKey(data.products, 'category');
+        setSortedProducts(productsByCategory);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  return (
+    <div className="product-list">
+      {Object.entries(sortedProducts).map(([category, items]) => (
+        <section key={category} className='product-category'>
+          <h2>{category}</h2>
+
+          {items.map((product) => 
+            <ProductItem key={product.id} product={product} />
+          )}
+        </section>
+      ))}
+    </div>
+  );
 }
 
-export default ProductList;
+export default ProductsList;

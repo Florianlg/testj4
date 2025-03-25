@@ -1,17 +1,18 @@
-import Header from './header/header'
-import Footer from './footer/footer'
-import Content from './content/Content'
-import './App.scss'
+import Header from './Header/Header';
+
+import './App.scss';
+import Footer from './Footer/Footer';
+import Content from './Content/Content';
 
 
 function App() {
   return (
-    <div className='app'>
-      <Header/>
-      <Content/>
-      <Footer/>
+    <div className="app">
+      <Header />
+      <Content />
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

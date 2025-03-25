@@ -1,20 +1,24 @@
 export interface Product {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    category: string;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    thumbnail: string;
-    images: string[];
-    brand: string;
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
 }
 
 export interface ProductsData {
-    products: Product[];
-    total: number;
-    skip: number;
-    limit: number;
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
+export interface ProductInCart extends Product {
+  quantity: number;
 }

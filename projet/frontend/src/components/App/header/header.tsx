@@ -1,6 +1,7 @@
-import logo from '../../../assets/LocalExpress_logo.svg';
-import './header.scss';
 import { useState } from 'react';
+
+import logo from '../../../assets/LocalExpress_logo.svg';
+import './Header.scss';
 
 
 function Header() {
@@ -26,4 +27,6 @@ function Header() {
     </header>
   );
 }
+
+
 export default Header;
